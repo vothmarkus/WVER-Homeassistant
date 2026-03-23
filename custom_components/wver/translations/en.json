@@ -1,0 +1,30 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up WVER",
+        "data": {
+          "name": "Name",
+          "scan_interval": "Update interval in minutes"
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Only one WVER configuration is allowed."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "wasserstand": {"name": "Wasserstand"},
+      "abfluss": {"name": "Abfluss"},
+      "abgabe": {"name": "Abgabe"},
+      "zufluss": {"name": "Zufluss"},
+      "wasserstand_seit_wwj2001": {"name": "Wasserstand seit WWJ 2001"},
+      "wasserstand_hauptsee_seit_wwj2001": {"name": "Wasserstand Hauptsee seit WWJ 2001"},
+      "wasserstand_hauptsee": {"name": "Wasserstand Hauptsee"},
+      "abgabe_hauptsee": {"name": "Abgabe Hauptsee"},
+      "zufluss_obersee": {"name": "Zufluss Obersee"},
+      "wasserstand_obersee": {"name": "Wasserstand Obersee"}
+    }
+  }
+}
