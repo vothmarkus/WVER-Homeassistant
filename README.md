@@ -165,5 +165,4 @@ Es besteht keine Verbindung zum Wasserverband Eifel-Rur oder zu Home Assistant.
 
 ## Lizenz
 
-Derzeit ist noch keine Lizenzdatei hinterlegt.  
-Für ein öffentliches Git-Repository sollte eine passende `LICENSE` ergänzt werden, zum Beispiel `MIT`.
+MIT.
