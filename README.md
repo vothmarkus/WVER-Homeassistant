@@ -7,9 +7,9 @@ Die Integration fragt die hinterlegten WVER-Stationen regelmäßig ab und stellt
 
 - Abfrage mehrerer WVER-Stationen über die vorhandenen JSON-Endpunkte
 - Ein Gerät pro Station in Home Assistant
-- Ein Sensor pro relevantem Signal
+- Ein Sensor pro Signal
 - Zentrale Aktualisierung per `DataUpdateCoordinator`
-- Konfiguration über die Home-Assistant-Oberfläche
+- Konfiguration des Aktualisierungs-Intervalls über die Home-Assistant-Oberfläche
 - Automatische Ergänzung fehlender Einheiten für bekannte Signaltypen
 - Robuste Verarbeitung: einzelne fehlerhafte Signale blockieren die übrigen Sensoren nicht
 
@@ -41,7 +41,7 @@ Die Integration legt Sensoren für folgende Signaltypen an, sofern sie an der je
 
 ## Einheiten
 
-Falls der WVER-Endpunkt keine Einheit liefert, ergänzt die Integration bekannte Einheiten automatisch:
+Falls der WVER-Endpunkt keine Einheit vorgibt, ergänzt die Integration bekannte Einheiten automatisch:
 
 - `wasserstand*` → `cm`
 - `abfluss`, `abgabe`, `zufluss` → `m³/s`
@@ -50,8 +50,10 @@ Falls der WVER-Endpunkt keine Einheit liefert, ergänzt die Integration bekannte
 
 ### Manuell
 
+Es wird davon ausgegangen, dass Dateizugriff auf den HA besteht (z. B. via SMB)
+
 1. Dieses Repository herunterladen oder klonen.
-2. Den Ordner `custom_components/wver` nach folgendem Ziel kopieren:
+2. Den Ordner `custom_components/wver` in folgendes HA-Verzeichnis kopieren:
 
    ```text
    /config/custom_components/wver
@@ -133,8 +135,7 @@ Die bestehende Logik aus dem ursprünglichen Python-Skript wurde dabei in eine H
 
 ## Hinweise
 
-- Die Stationen sind aktuell statisch in `wver_stationen.py` definiert.
-- Nicht jedes Signal ist an jeder Station vorhanden.
+- Die Stationen sind aktuell statisch in `wver_stationen.py` definiert. Die Zuordnung ist fest aber beliebig.
 - Wenn ein einzelner Abruf fehlschlägt, bleiben die übrigen Sensoren weiterhin verfügbar.
 - Die Integration ist als Custom-Component gedacht und nicht Teil des offiziellen Home-Assistant-Core.
 
@@ -142,21 +143,10 @@ Die bestehende Logik aus dem ursprünglichen Python-Skript wurde dabei in eine H
 
 Mögliche nächste Ausbaustufen:
 
-- Auswahl einzelner Stationen über den Options-Dialog
+- Hinzufügen und löschen von Stationen über den Options-Dialog
 - Auswahl einzelner Signale
-- Diagnosedaten
-- bessere Klassifizierung von Sensoren
 - HACS-Unterstützung
 - Branding für den Integrationsdialog
-
-## Entwicklung
-
-Zum lokalen Testen:
-
-1. Repository in eine Testinstanz von Home Assistant einbinden.
-2. Ordner `custom_components/wver` in das Config-Verzeichnis kopieren.
-3. Home Assistant neu starten.
-4. Logs in Home Assistant prüfen.
 
 ## Haftungsausschluss
 
